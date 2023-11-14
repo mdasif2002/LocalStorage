@@ -57,22 +57,40 @@ function saveToLocalStorage(event){
 function showUserOnScreen(obj){
     const parentElement = document.getElementById('listOfItems');
     const childElement = document.createElement('li');
+    //create Delete Button
     var dltBtn = document.createElement('button');
-    dltBtn.className="delete";
 
+    //create edit button
+    var editBtn = document.createElement('button');
+
+    //Add text to li
     childElement.textContent = obj.name + "-" + obj.email + "-" + obj.number;
-    dltBtn.textContent='delete'
+    //Add text to button
+    dltBtn.textContent='delete';
+    //Add text to edit button
+    editBtn.textContent = 'edit';
     
-
+    //Delete Button
     dltBtn.onclick=()=>{
         localStorage.removeItem(obj.email);
         parentElement.removeChild(childElement);
     }
-    childElement.appendChild(dltBtn);
 
+    //Edit Button
+    editBtn.onclick =()=>{
+        localStorage.removeItem(obj.email);
+        parentElement.removeChild(childElement);
+        document.getElementById('name').value=obj.name;
+        document.getElementById('email').value=obj.email;
+        document.getElementById('phone').value=obj.number;
+    }
+
+    //Append delete & edit button to li
+    childElement.appendChild(dltBtn);
+    childElement.appendChild(editBtn);
+    //Append li to ul
     parentElement.appendChild(childElement)
 }
-
 
 
 
