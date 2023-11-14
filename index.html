@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="saveToLocalStorage(event)">
+        <input type="text" name="username" placeholder="enter your name" id="name">
+        <input type="text" name="emailid" placeholder="enter your mail" id="email">
+        <input type="tel" name="phonenumber" placeholder="enter your number" id="phone">
+        <button id="btn">Submit</button>
+    </form>
+
+    <ul id="listOfItems"></ul>
+</body>
+
+<script type="text/javascript">
+//     let obj={
+//         name :'asif',
+//         age :20
+//     }
+
+
+//  //convert to string 
+//  var obj_serialized = JSON.stringify(obj);
+//  localStorage.setItem('myObj',obj_serialized);
+//  //console.log(localStorage);
+
+//  //convert string to object
+//  var obj_deserialized = JSON.parse(localStorage.getItem('myObj'));
+//  console.log(obj_deserialized);
+
+//save data to the local storage
+function saveToLocalStorage(event){
+    event.preventDefault();
+
+    var name = event.target.username.value;
+    var email = event.target.emailid.value;
+    var number = event.target.phonenumber.value;
+
+    // localStorage.setItem('name',name);
+    // localStorage.setItem('email',email);
+    // localStorage.setItem('number',number);
+
+    const obj ={
+        name,
+        email,
+        number
+    }
+    localStorage.setItem(obj.email,JSON.stringify(email));
+    showUserOnScreen(obj);
+
+}
+
+function showUserOnScreen(obj){
+    const parentElement = document.getElementById('listOfItems');
+    const childElement = document.createElement('li');
+    childElement.textContent = obj.name + "-" + obj.email + "-" + obj.number;
+    parentElement.appendChild(childElement)
+}
+</script>
+
+</html>
