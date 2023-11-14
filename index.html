@@ -57,9 +57,25 @@ function saveToLocalStorage(event){
 function showUserOnScreen(obj){
     const parentElement = document.getElementById('listOfItems');
     const childElement = document.createElement('li');
+    var dltBtn = document.createElement('button');
+    dltBtn.className="delete";
+
     childElement.textContent = obj.name + "-" + obj.email + "-" + obj.number;
+    dltBtn.textContent='delete'
+    
+
+    dltBtn.onclick=()=>{
+        localStorage.removeItem(obj.email);
+        parentElement.removeChild(childElement);
+    }
+    childElement.appendChild(dltBtn);
+
     parentElement.appendChild(childElement)
 }
+
+
+
+
 </script>
 
 </html>
